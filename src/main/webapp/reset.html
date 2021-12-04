@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script src="js/reset.js"></script>
+    <script src="js/index.js"></script>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgb(255, 255, 255);
+            background: url(images/bg.png) repeat fixed center;
+        }
+    </style>
+</head>
+<body>
+
+<form class="form" method="post" action="LoginServlet" onclick="clearText()">
+    <!-- 头部 -->
+    <div class="tabHead">
+        <span id="emailLoginSpan" class="active">
+			<a id="dynamicLogin_a" >找回密码</a>
+		</span>
+    </div>
+
+    <div class="m-account" id="emailVerify">
+        <!-- id -->
+<!--        <div class="item">-->
+<!--			<span class="prex-icon">-->
+<!--				<img src="images/user1.png" class="login-icon"></span>-->
+<!--            <input id="userid" name="userid" type="text" placeholder="请输入学号/工号" title="请输入学号/工号" value=""></div>-->
+<!--        <div id="err_id" ></div>-->
+
+        <!-- email -->
+        <div class="item">
+			<span class="prex-icon">
+				<img src="images/pass1.png" class="login-icon"></span>
+            <input id="email" name="email" type="text" placeholder="请输入邮箱号" title="请输入邮箱" value=""></div>
+        <div id="err_email" ></div>
+
+        <!-- verify -->
+        <div class="item">
+            <img src="images/captcha1.png" class="login-icon">
+            <input id="verify" name="verify" type="text" placeholder="请输入验证码" title="请输入验证码">
+            <a class="get-code" onclick="requestVerification()">获取验证码</a></div>
+        <div id="err_verify"></div>
+
+        <!-- login button -->
+        <div>
+            <button type="button" class="login-btn" onclick="emailConfirm()">下一步</button></div>
+    </div>
+
+    <div class="m-account" id="passwordReset" style="display: none">
+
+        <!-- passwd -->
+        <div class="item">
+            <img src="images/pass1.png" class="login-icon">
+            <input id="passwd" name="passwd" type="password" placeholder="请输入密码" title="请输入密码"></div>
+        <div id="err_pw"></div>
+
+        <!-- passwd -->
+        <div class="item">
+            <img src="images/pass1.png" class="login-icon">
+            <input id="confirm" name="passwd" type="password" placeholder="请再次输入密码" title="请输入密码"></div>
+        <div id="err_confirm"></div>
+
+        <!-- login button -->
+        <div>
+            <button type="button" class="login-btn" onclick="resetPw()">确认</button></div>
+    </div>
+
+
+</form>
+</body>
+</html>

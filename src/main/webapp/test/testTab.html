@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #box{width: 600px;background: #ccc;margin: 0 auto;}
+        li{list-style: none;}
+        #ul1{display: block; width: 100%;overflow: hidden;}
+        #ul1 li{width:110px;height: 40px;background: #4cfed2;float: left;margin-left: 8px;text-align: center;line-height: 40px;}
+        #content{width: 100%;margin-top: 20px;}
+        #content div{display: none;}
+        #content div.active{display: block;}
+        .show{background: red;}
+    </style>
+</head>
+<body>
+<div id="box">
+    <ul id="ul1">
+        <li>首页</li>
+        <li>产品</li>
+        <li>新闻</li>
+        <li>联系</li>
+        <li>我的</li>
+    </ul>
+    <div id="content">
+        <div class="active">
+            <ul>
+                <li>new1</li>
+                <li>new2</li>
+                <li>new3</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>new4</li>
+                <li>new5</li>
+                <li>new6</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>new7</li>
+                <li>new8</li>
+                <li>new9</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>new10</li>
+                <li>new11</li>
+                <li>new12</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>new13</li>
+                <li>new14</li>
+                <li>new15</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    window.onload=function(){
+        var oli=document.getElementById("ul1").getElementsByTagName("li");
+        //alert(oli.length);
+        var odiv=document.getElementById("content").getElementsByTagName("div");
+        //alert(odiv.length)
+        for(var i=0;i<oli.length;i++){
+            oli[i]._index=i;
+            oli[i].onclick=function(){
+                //alert(i);
+                for(i=0;i<oli.length;i++){
+                    oli[i].className='';
+                    odiv[i].style.display='none';
+                }
+                this.className='show';
+                odiv[this._index].style.display='block';
+            }
+        }
+    }
+</script>
+</body>
+</html>

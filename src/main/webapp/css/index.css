@@ -1,0 +1,112 @@
+.form{
+	padding: 100px;
+	background-color: #FFFFFF;
+}
+
+/* logo */
+.logo{
+	position: absolute;
+	top: 50px;
+	left: 10%;
+}
+
+/* 表单 */
+.form .m-account > div{
+	position: relative;
+	overflow: hidden;
+	width: 200px;
+}
+
+/* 轮廓 */
+.form .m-account .item{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #e8e8e8;
+	border-radius: 4px;
+	height: 40px;
+	margin-top: 20px;
+}
+
+/* 输入框 */
+.form .m-account > div > input {
+	width: 70%;
+	border: none;
+	height: 40px;
+	margin-left: 0px;
+	outline: none;
+}
+#verify{
+	width: 40%;
+}
+
+img{
+	vertical-align:middle;
+}
+
+.login-btn {
+	width: 90%;
+	height: 50px;
+	background: #2368de;
+	border-radius: 4px;
+	display: block;
+	color: #fff;
+	text-align: center;
+	line-height: 50px;
+	font-size: 18px;
+	text-decoration: none;
+	letter-spacing: 12px;
+	margin: 10px;
+}
+
+.fo-passwd, .new-acco{
+	text-decoration: none;
+	font-size: 14px;
+	line-height: 26px;
+	color: #73757E;
+}
+
+/* Tab */
+.tabHead {
+	width: 100%;
+	z-index: 10;
+	overflow: hidden;
+	font-size: 12px;
+}
+
+.tabHead span {
+	display: block;
+	width: 80px;
+	float: left;
+	position: relative;
+	z-index: 2;
+	font-size: 18px;
+	text-align: center;
+	cursor: pointer;
+	line-height: 20px;
+	padding: 8px 0;
+	border-bottom: 1px solid #DEDEDE;
+}
+.tabHead span a{
+	color: #34363E;
+	text-decoration: none;
+}
+
+.get-code{
+	text-decoration: none;
+	background: none;
+	color: #2B6CDB;
+	padding: 4px 4px;
+	margin-top: 3px;
+	cursor: pointer;
+	font-family: 'Microsoft YaHei';
+	font-size: x-small;
+	position: absolute;
+	right: 4px;
+	top: 5px;
+}
+
+
+
+
+
+
