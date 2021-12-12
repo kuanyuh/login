@@ -3,7 +3,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="css/style_home.css" type="text/css" rel="stylesheet">
 
@@ -11,21 +10,6 @@
     <title>用户信息</title>
 </head>
 <body>
-
-<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #3EA055;">
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="unsafe_home.php" ><img src="seed_logo.png" style="height: 40px; width: 200px;" alt="SEEDLabs"></a>
-        <ul class='navbar-nav mr-auto mt-2 mt-lg-0' style='padding-left: 30px;'>
-            <li class='nav-item'>
-                <a class='nav-link' href='unsafe_home.php'>Home</a>
-            </li>
-            <li class='nav-item active'>
-                <a class='nav-link' href='unsafe_edit_frontend.php'>Edit Profile</a>
-            </li>
-        </ul>
-        <button onclick='logout()' type='button' id='logoffBtn' class='nav-link my-2 my-lg-0'>Logout</button>
-    </div>
-</nav>
 
 <div class="container  col-lg-4 col-lg-offset-4 text-center" style="padding-top: 50px; text-align: center;">
     <h2><b>Profile Edit</b></h1><hr><br></h2>
@@ -69,9 +53,6 @@
 
     </form>
     <br>
-    <p class="text-center">
-        Copyright &copy; SEED LABs
-    </p>
 </div>
 </body>
 </html>

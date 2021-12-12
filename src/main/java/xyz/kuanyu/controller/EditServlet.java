@@ -38,10 +38,6 @@ public class EditServlet extends HttpServlet {
         User user = JDBCUtil.serviceInstance().findUserById(id);
         Map<String, Object> map = new HashMap<>();
 
-//        user.setId(id);
-//        String parId = request.getParameter("userid").trim();
-//        if (parId!="") user.setId(Integer.parseInt(parId));
-
         String parName= request.getParameter("name").trim();
         if (parName!="") user.setName(parName);
 
@@ -55,13 +51,11 @@ public class EditServlet extends HttpServlet {
         if (parPhoneNumber!="") user.setPhoneNumber(parPhoneNumber);
 
         String parPassword = request.getParameter("password").trim();
-        if (parPassword!="") user.setEmail(parPassword);
-//        if (parPassword!="") user.setEmail(MD5.getMD5String(parPassword));TODO
+//        if (parPassword!="") user.setPassword(parPassword); //TODO
+        if (parPassword!="") user.setPassword(MD5.getMD5String(parPassword));
 
         int nums = JDBCUtil.serviceInstance().modifyUser(user);
         System.out.println("更新信息"+nums);
-        System.out.println(user);
-        System.out.println(JDBCUtil.serviceInstance().findUserById(id));
 
         map.put("name", user.getName());
         map.put("email", user.getEmail());

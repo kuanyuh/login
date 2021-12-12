@@ -11,12 +11,11 @@ body{
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
     background: url(../images/bg.png) repeat fixed center;
 }
 .shell{
     width: 800px;
-    height: 450px;
+    height: 500px;
     position: relative;
     overflow: hidden;
     border-radius: 5px;
@@ -36,13 +35,13 @@ body{
     background-size: cover;
 }
 .images:nth-child(1){
-    background-image: url(../images/img103.png);
+    background-image: url("../images/img101.png");
 }
 .images:nth-child(2){
-    background-image: url(../images/img101.png);
+    background-image: url("../images/img102.jpg");
 }
 .images:nth-child(3){
-    background-image: url(../images/img102.jpg);
+    background-image: url("../images/img103.png");
 }
 .min-images {
     display: flex;
@@ -65,13 +64,13 @@ body{
 }
 
 .min:nth-child(1){
-    background-image: url(../images/img103.png);
+    background-image: url("../images/img103.png");
 }
 .min:nth-child(2){
-    background-image: url(../images/img101.png);
+    background-image: url("../images/img101.png");
 }
 .min:nth-child(3){
-    background-image: url(../images/img102.jpg);
+    background-image: url("../images/img102.jpg");
 }
 
 .button {

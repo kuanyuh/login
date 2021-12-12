@@ -3,6 +3,7 @@ package xyz.kuanyu.service;
 import xyz.kuanyu.dao.UserDao;
 import xyz.kuanyu.domain.User;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
@@ -53,6 +54,40 @@ public class UserServiceImpl implements UserService {
     public List<User> findAllUser() {
         List<User> users = userDao.selectAllUser();
         return users;
+    }
+
+    @Override
+    public boolean existUser(int id) {
+        int res = userDao.existUserById(id);
+        if (res==1){
+            return true;
+        }else if (res==0){
+            return false;
+        }else {
+            try {
+                throw new Exception("推测sql错误");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public boolean existUser(String email) {
+        int res = userDao.existUserByEmail(email);
+        if (res==1){
+            return true;
+        }else if (res==0){
+            return false;
+        }else {
+            try {
+                throw new Exception("推测sql错误");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return false;
+        }
     }
 
 }

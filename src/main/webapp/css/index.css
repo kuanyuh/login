@@ -1,6 +1,14 @@
+body{
+	background: url(../images/bg.png) repeat fixed center;
+}
 .form{
+	position: absolute;
+	width: 200px;
+	height: 200px;
 	padding: 100px;
 	background-color: #FFFFFF;
+	margin: 150px 800px;
+	border-radius: 10px;
 }
 
 /* logo */

@@ -24,6 +24,11 @@ public class LoginServlet extends HttpServlet {
         String way = request.getParameter("way");
         PrintWriter out=response.getWriter();
         System.out.println(way);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         switch (way){
             case "passwd":
                 int userid = Integer.parseInt(request.getParameter("userid"));
@@ -71,7 +76,7 @@ public class LoginServlet extends HttpServlet {
         doGet(request,response);
     }
 
-    private boolean checkPasswd(int userid, String password, PrintWriter out){
+    public boolean checkPasswd(int userid, String password, PrintWriter out){
 
         User user = JDBCUtil.serviceInstance().findUserById(userid);
         if (user==null){
@@ -80,8 +85,8 @@ public class LoginServlet extends HttpServlet {
             return false;
         }
         //TODO 收尾
-//        if (!user.getPassword().equals(MD5.getMD5String(password))){
-        if (!user.getPassword().equals(password)){
+        if (!user.getPassword().equals(MD5.getMD5String(password))){
+//        if (!user.getPassword().equals(password)){
             out.print("ERR_PW");
             System.out.println(user.getPassword()+"  "+password);
             return false;

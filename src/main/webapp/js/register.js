@@ -9,47 +9,43 @@ function emailConfirm() {
     var email = document.getElementById("email").value;
     var verify = document.getElementById("verify").value;
 
-    var param = "way=email" + "&email=" + email + "&verify=" + verify;
+    var param = "way=nextStep" + "&email=" + email;
     //绑定事件
     xmlHttp.onreadystatechange = function(){
         if(xmlHttp.readyState==4 && xmlHttp.status==200){
             var data = xmlHttp.responseText;
-            if(data=="ERR_EMAIL"){
-                document.getElementById("err_email").innerHTML="邮箱不存在";
-            }else if(data=="ERR_VERIFY"){
-                document.getElementById("err_verify").innerHTML="验证码错误";
-            }else if(data=="OK"){
+            if(data=="email_exist"){
+                document.getElementById("err_verify").innerHTML="邮箱已存在";
+            }else if(data=="next"){
                 alert("成功");
                 next();
+            }else if (data=="err"){
+                alert("错误");
             }
         }
     }
-    xmlHttp.open("POST","LoginServlet?"+param, true);
+    xmlHttp.open("POST","RegisterServlet?"+param, true);
     //发送异步请求
     xmlHttp.send();
 }
 
-function resetPw() {
+function register() {
     //创建异步对象
     var xmlHttp = new XMLHttpRequest();
     var passwd = document.getElementById("passwd").value;
     var confirm = document.getElementById("confirm").value;
-    if (passwd!=confirm){
-        alert("两次输入密码不一致："+"pw1:"+passwd+"pw2"+confirm);
-        return;
-    }
-    var param = "passwd=" + passwd + "&confirm=" + confirm;
+    var param = "way=register" + "&passwd=" + passwd + "&confirm=" + confirm;
     //绑定事件
     xmlHttp.onreadystatechange = function(){
         if(xmlHttp.readyState==4 && xmlHttp.status==200){
             var data = xmlHttp.responseText;
             if(data=="OK"){
-                alert("修改成功");
+                alert("注册成功");
                 window.location.href="new_login.html"
             }
         }
     }
-    xmlHttp.open("POST","PwResetServlet?"+param, true);
+    xmlHttp.open("POST","RegisterServlet?"+param, true);
     //发送异步请求
     xmlHttp.send();
 }

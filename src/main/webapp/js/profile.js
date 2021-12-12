@@ -9,13 +9,16 @@ function update() {
     var param = "name=" + name + "&email=" + email + "&age=" + age + "&phoneNumber=" + phoneNumber + "&password=" + password;
     //绑定事件
     xmlHttp.onreadystatechange = function(){
-        alert(xmlHttp.readyState +" "+ xmlHttp.status);
         if(xmlHttp.readyState==4 && xmlHttp.status==200){
-            var jsonData = xmlHttp.responseText;
-            //将json格式字符串转为json object对象
-            var jsonObj = eval("(" + jsonData + ")")
-            //处理结果函数
-            callback(jsonObj);
+
+            if (confirm("确认修改？")==true){
+                var jsonData = xmlHttp.responseText;
+                //将json格式字符串转为json object对象
+                var jsonObj = eval("(" + jsonData + ")")
+                //处理结果函数
+                callback(jsonObj);
+                alert("修改成功");
+            }
         }
     }
 
@@ -26,13 +29,17 @@ function update() {
 
 function callback(jsonObj){
     document.getElementById("name").setAttribute("placeholder", jsonObj.name);
-    alert(jsonObj.name);
+    document.getElementById("name").value="";
+
     document.getElementById("email").setAttribute("placeholder", jsonObj.email);
-    alert(jsonObj.email);
+    document.getElementById("email").value="";
+
     document.getElementById("age").setAttribute("placeholder", jsonObj.age);
-    alert(jsonObj.age);
+    document.getElementById("age").value="";
+
     document.getElementById("phoneNumber").setAttribute("placeholder", jsonObj.phoneNumber);
-    alert(jsonObj.phoneNumber);
-    document.getElementById("password").setAttribute("placeholder", jsonObj.password);
-    alert(jsonObj.phoneNumber);
+    document.getElementById("phoneNumber").value="";
+
+    // document.getElementById("password").setAttribute("placeholder", jsonObj.password);
+    document.getElementById("password").value="";
 }

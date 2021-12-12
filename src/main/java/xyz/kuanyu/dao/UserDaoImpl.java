@@ -34,7 +34,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int insertUser(User user) {
-        String sql = "insert into user(id, emial, password) value(?,?,?)";
+        String sql = "insert into user(id, email, password) value(?,?,?)";
         int num = 0;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -144,14 +144,17 @@ public class UserDaoImpl implements UserDao {
             pst = conn.prepareStatement(sql);
             pst.setInt(1,id);
             rs = pst.executeQuery();
-            rs.next();
-            user.setId(rs.getInt("id"));
-            user.setName(rs.getString(2));
-            user.setEmail(rs.getString(3));
-            user.setAge(rs.getInt(4));
-            user.setPhoneNumber(rs.getString(5));
-            user.setPassword(rs.getString(6));
-
+            if (rs.next()){
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString(2));
+                user.setEmail(rs.getString(3));
+                user.setAge(rs.getInt(4));
+                user.setPhoneNumber(rs.getString(5));
+                user.setPassword(rs.getString(6));
+            }else {
+                System.out.println("用户不存在");
+                return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -199,8 +202,7 @@ public class UserDaoImpl implements UserDao {
             pst = conn.prepareStatement(sql);
             pst.setString(1,email);
             rs = pst.executeQuery();
-            rs.next();
-            if (rs!=null){
+            if (rs.next()){
                 user.setId(rs.getInt(1));
                 user.setName(rs.getString(2));
                 user.setEmail(rs.getString(3));
@@ -209,6 +211,7 @@ public class UserDaoImpl implements UserDao {
                 user.setPassword(rs.getString(6));
             }else {
                 System.out.println("用户不存在");
+                return null;
             }
         } catch (Exception e) {
             e.printStackTrace();

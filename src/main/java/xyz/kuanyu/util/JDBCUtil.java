@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class JDBCUtil {
 
     public static UserService serviceInstance(){
-        UserDao userDao  = new UserDaoImpl();
+        UserDaoImpl userDao  = new UserDaoImpl();
         UserServiceImpl userService = new UserServiceImpl();
         userService.setUserDao(userDao);
         return userService;

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/carousel.css">
+    <script src="js/index.js"></script>
+  <style>
+    .image{
+      width:600px;
+      height:400px;
+      list-style:none;
+      position:relative;
+      overflow:hidden;
+      margin:0px;
+      padding:0px;
+    }
+    .item{
+
+      width:100%;
+      height:100%;
+      position:relative;
+      opacity: 0;
+      transition: all .5s;
+    }
+    .item.active{
+      opacity: 1;
+      z-index:10;
+    }
+    .btn{
+      z-index:10;
+      position:relative;
+      width:50px;
+      height:100px;
+      top:150px;
+      border:0px;
+      margin:0px;
+      padding: 0px;;
+      background-color: rgba(255,255,255,0.2);
+    }
+    #gopre{
+      left:0px;
+        right:0px;
+    }
+    .point{
+      position:relative;
+      list-style:none;
+      padding-left:0px;
+      bottom:20px;
+      right:20px;
+      z-index:30;
+    }
+    .pointer{
+      width:8px;
+      height:8px;
+      float:left;
+      border-radius:100%;
+      margin-left:14px;
+      background-color:rgba(0,0,0,0.4);
+      border-style:solid;
+      border-width:2px;
+      border-color:rgba(255,255,255,0.6);
+    }
+    .pointer.active{
+      background-color:rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+<div class="leftbanner">
+    <ul class="image">
+        <li class="item active"><img src="images/1.jpg"></li>
+        <li class="item"><img src="images/1.jpg"></li>
+        <li class="item"><img src="images/2.jpg"></li>
+        <li class="item"><img src="ximages/3.jpg"></li>
+    </ul>
+    <ul class="point">
+        <li class="pointer active" data-index='0'></li>
+        <li class="pointer" data-index='1'></li>
+        <li class="pointer" data-index='2'></li>
+        <li class="pointer" data-index='3'></li>
+    </ul>
+    <button type="button" class="btn" id="gopre"></button>
+    <button type="button" class="btn" id="gonext"></button>
+</div>
+
+<!-- logo -->
+<div class="logo">
+    <img src="images/logo.png" /></div>
+<!-- 表单 -->
+
+<form class="form" method="post" action="LoginServlet" onclick="clearText()">
+    <!-- 头部 -->
+    <div class="tabHead">
+		<span id="pwdLoginSpan" class="active" style="width: 50%;border-bottom:1px solid #000;" onclick="useridTab()">
+			<a id="userNameLogin_a" onclick="useridTab()">账号登录</a>
+		</span>
+        <span id="emailLoginSpan" class="active" style="width: 50%;" onclick="emailTab()">
+			<a id="dynamicLogin_a" onclick="emailTab()">邮箱登录</a>
+		</span>
+    </div>
+
+    <div class="m-account" id="passwordVerify">
+        <!-- id -->
+        <div class="item">
+			<span class="prex-icon">
+				<img src="images/user1.png" class="login-icon"></span>
+            <input id="userid" name="userid" type="text" placeholder="请输入学号/工号" title="请输入学号/工号" value=""></div>
+        <div id="err_id" ></div>
+
+        <!-- passwd -->
+        <div class="item">
+            <img src="images/pass1.png" class="login-icon">
+            <input id="passwd" name="passwd" type="password" placeholder="请输入密码" title="请输入密码"></div>
+        <div id="err_pw"></div>
+
+        <!-- login button -->
+        <div>
+            <button type="button" class="login-btn" onclick="dologin()">登录</button></div>
+
+
+        <div class="help">
+            <a href="reset.html" class="fo-passwd">忘记密码</a>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a href="register.html" class="fo-passwd">注册账号</a></div>
+    </div>
+
+    <div class="m-account" id="emailVerify" style="display: none">
+        <!-- email -->
+        <div class="item">
+			<span class="prex-icon">
+				<img src="images/user1.png" class="login-icon"></span>
+            <input id="email" name="email" type="text" placeholder="请输入邮箱号" title="请输入邮箱" value=""></div>
+        <div id="err_email" ></div>
+
+        <!-- verify -->
+        <div class="item">
+            <img src="images/captcha1.png" class="login-icon">
+            <input id="verify" name="verify" type="text" placeholder="请输入验证码" title="请输入验证码">
+            <a class="get-code" onclick="requestVerification()">获取验证码</a></div>
+        <div id="err_verify"></div>
+
+        <!-- login button -->
+        <div>
+            <button type="button" class="login-btn" onclick="dologin()">登录</button></div>
+
+
+        <div class="help">
+            <a href="reset.html" class="fo-passwd">忘记密码</a>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <a href="register.html" class="fo-passwd">注册账号</a></div>
+    </div>
+</form>
+
+<script>
+    var img=document.getElementsByClassName('item');
+    var pointer=document.getElementsByClassName('pointer');
+    var btngopre=document.getElementById('gopre');
+    var btngonext=document.getElementById('gonext');
+    var index=0;//轮播图的js
+
+    var clearactive=function(){
+        for(var i=0;i<img.length;i++){
+            img[i].className='item';
+            pointer[i].className='pointer';
+        }
+    }
+
+    var goindex=function(){
+        clearactive();
+        img[index].className='item active';
+        pointer[index].className='pointer active';
+    }
+    var gopre=function(){
+        if(index==0){
+            index+=4;
+        }
+        index-=1;
+        goindex();
+    }
+    var gonext=function(){
+        index=(index+1)%4;
+        goindex();
+    }
+
+    btngopre.addEventListener('click',function(){
+        gopre();
+    });
+    btngonext.addEventListener('click',function(){
+        gonext();
+    });
+    for(var i=0;i<pointer.length;i++){
+        pointer[i].addEventListener('click',function(){
+            index=this.getAttribute('data-index');
+            goindex();
+        })
+    }
+    setInterval(function(){
+        gonext();
+    },2000);
+</script>
+</body>
+</html>

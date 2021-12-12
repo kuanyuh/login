@@ -14,7 +14,8 @@ public class EmailServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(true);
+
         String email = request.getParameter("email");
 
         LogUtil.log("即将发送Email验证码",email);

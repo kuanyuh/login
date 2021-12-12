@@ -9,6 +9,20 @@ function dologin(){
 }
 
 function requestVerification() {
+	//倒计时
+	var i = 60;
+	var tim = document.getElementsByClassName("get-code")[0];
+	var timer = setInterval(function () {
+		if (i == -1) {
+			// window.location.href="http://blog.csdn.net/kill_bugs";
+			clearInterval(timer);
+			tim.innerHTML = "获取验证码"
+		} else {
+			tim.innerHTML = i+"秒后重发";
+			--i;
+		}
+	}, 1000);
+
 	//创建异步对象
 	var xmlHttp = new XMLHttpRequest();
 	var email = document.getElementById("email").value;
@@ -16,7 +30,7 @@ function requestVerification() {
 
 	xmlHttp.onreadystatechange = function(){
 		if(xmlHttp.readyState==4 && xmlHttp.status==200){
-			alert("ok");
+			alert("验证码已发送");
 		}
 	}
 	xmlHttp.open("POST","EmailServlet?"+param, true);
@@ -39,7 +53,7 @@ function passwdLogin() {
 			}else if(data=="ERR_PW"){
 				document.getElementById("err_pw").innerHTML="密码错误";
 			}else if(data=="OK"){
-				alert("okk1");
+				alert("登录成功");
 				window.location.href="ProfileServlet?userid="+userid;
 			}
 		}
@@ -64,7 +78,7 @@ function emailLogin() {
 			}else if(data=="ERR_VERIFY"){
 				document.getElementById("err_verify").innerHTML="验证码错误";
 			}else if(data=="OK"){
-				alert("okk1");
+				alert("登录成功");
 				window.location.href="ProfileServlet?";
 				//TODO
 			}
